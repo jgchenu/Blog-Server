@@ -1,5 +1,5 @@
 const config = {
-  database: 'smile', // 使用哪个数据库
+  database: 'blog', // 使用哪个数据库
   username: 'root', // 用户名
   password: 'root', // 口令
   host: 'localhost', // 主机名
