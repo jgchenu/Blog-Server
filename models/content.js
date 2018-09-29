@@ -10,3 +10,4 @@ const Content = sequelize.define('Content', {
         type:Sequelize.TEXT()
     }
 })
+module.exports=Content;
