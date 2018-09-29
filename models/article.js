@@ -1,38 +1,47 @@
 const sequelize = require('../db')
 const Sequelize = require('sequelize');
+const {
+    INTEGER,
+    STRING,
+} = Sequelize;
 const Article = sequelize.define('article', {
-    id: {
-        primaryKey: true,
-        autoIncrement: true,
-        type: Sequelize.INTEGER(11)
-    },
-    contentId: {
-        type: Sequelize.INTEGER(11),
-        allowNull: false
-    },
-    tags: {
-        type: Sequelize.STRING(255)
-    },
-    comments: {
-        type: Sequelize.STRING(255)
-    },
-    summary: {
-        type: Sequelize.STRING(),
-        validate: {
-            min: 2,
-            max: 255,
+        id: {
+            primaryKey: true,
+            autoIncrement: true,
+            type: INTEGER(11)
         },
+        title: {
+            type: STRING(255),
+            allowNull: false
+        },
+        summary: {
+            type: STRING(255),
+            validate: {
+                min: 2,
+                max: 255,
+            },
+        },
+        readCount: {
+            type: INTEGER(11),
+            defaultValue: 0,
+        },
+        tags: {
+            type: STRING(255),
+            defaultValue: '[]'
+        },
+        userId: {
+            type: INTEGER(11),
+            allowNull: false
+        }
     },
-    readSize: {
-        type: Sequelize.INTEGER(),
-        defaultValue: 0,
-    },
-})
-Article.associate = function () {
-    Article.belongsTo(User);
-    Article.belongsTo(Catalog);
-    Article.hasMany(Comment, {
-        as: 'comment',
-    });
-};
+
+
+)
+Article.associate = function (models) {
+    models.article.belongsTo(models.user, {
+        foreignKey: 'userId',
+        targetKey: 'id',
+    })
+    models.article.hasOne(models.content)
+}
 module.exports = Article;

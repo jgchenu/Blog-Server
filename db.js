@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const config = require('./config')
-console.log('init sequelize...');
 
 var sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
@@ -16,7 +15,8 @@ var sequelize = new Sequelize(config.database, config.username, config.password,
     freezeTableName: true,
     charset: "utf8",
     collate: "utf8_general_ci",
-    underscored: true,
+    underscored: false,
+    constraints: false
   }
 });
 

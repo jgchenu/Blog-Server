@@ -1,13 +1,27 @@
 const sequelize = require('../db')
 const Sequelize = require('sequelize');
-const Content = sequelize.define('Content', {
-    id:{
-        type:Sequelize.INTEGER(11),
-        autoIncrement:true,
-        primaryKey:true
+const {
+    INTEGER,
+    TEXT
+} = Sequelize;
+const Content = sequelize.define('content', {
+    id: {
+        type: INTEGER(11),
+        autoIncrement: true,
+        primaryKey: true
     },
-    value:{
-        type:Sequelize.TEXT()
-    }
+    value: {
+        type: TEXT()
+    },
+    articleId: {
+        type: INTEGER(11),
+        allowNull: false
+    },
 })
-module.exports=Content;
+Content.associate = function (models) {
+    models.content.belongsTo(models.article, {
+        foreignKey: 'articleId',
+        targetKey: 'id',
+    })
+}
+module.exports = Content;

@@ -1,20 +1,30 @@
 const sequelize = require("../db.js");
 const Sequelize = require("sequelize");
-
-module.exports = sequelize.define(
+const {
+  INTEGER,
+  STRING,
+} = Sequelize;
+const User = sequelize.define(
   "user", {
     id: {
-      type: Sequelize.INTEGER(11),
+      type: INTEGER(11),
       primaryKey: true,
       autoIncrement: true
     },
     userName: {
-      type: Sequelize.STRING(255),
+      type: STRING(255),
       unique: true,
     },
     password: {
-      type: Sequelize.STRING(255),
+      type: STRING(255),
       allowNull: false,
+    },
+    authorityId: {
+      type: INTEGER(11),
+      allowNull: false
     }
-  }
-);
+  });
+User.associate = function (models) {
+  models.user.hasMany(models.article)
+}
+module.exports = User

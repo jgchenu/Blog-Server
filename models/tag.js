@@ -1,14 +1,22 @@
 const sequelize = require('../db')
 const Sequelize = require('sequelize');
+const {
+    INTEGER,
+    STRING
+} = Sequelize;
 const Tag = sequelize.define('tag', {
     id: {
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER(11)
+        type: INTEGER(11)
     },
     name: {
-        type: Sequelize.STRING(255),
+        type: STRING(255),
         unique: true,
+        allowNull: false
+    },
+    articleId: {
+        type: INTEGER(11),
         allowNull: false
     }
 })
