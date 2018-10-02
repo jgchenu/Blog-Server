@@ -3,6 +3,7 @@ const Sequelize = require("sequelize");
 const {
   INTEGER,
   STRING,
+  TINYINT
 } = Sequelize;
 const User = sequelize.define(
   "user", {
@@ -19,9 +20,10 @@ const User = sequelize.define(
       type: STRING(255),
       allowNull: false,
     },
-    authorityId: {
-      type: INTEGER(11),
-      allowNull: false
+    authority: {
+      type: TINYINT(1),
+      allowNull: false,
+      defaultValue: 0
     }
   });
 User.associate = function (models) {

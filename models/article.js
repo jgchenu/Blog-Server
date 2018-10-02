@@ -16,18 +16,10 @@ const Article = sequelize.define('article', {
         },
         summary: {
             type: STRING(255),
-            validate: {
-                min: 2,
-                max: 255,
-            },
         },
         readCount: {
             type: INTEGER(11),
             defaultValue: 0,
-        },
-        tags: {
-            type: STRING(255),
-            defaultValue: '[]'
         },
         userId: {
             type: INTEGER(11),
@@ -43,5 +35,6 @@ Article.associate = function (models) {
         targetKey: 'id',
     })
     models.article.hasOne(models.content)
+    models.article.hasMany(models.tag);
 }
 module.exports = Article;

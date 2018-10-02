@@ -20,4 +20,10 @@ const Tag = sequelize.define('tag', {
         allowNull: false
     }
 })
+Tag.associate = function (models) {
+    models.tag.belongsTo(models.article, {
+        foreignKey: 'articleId',
+        targetKey: 'id',
+    })
+}
 module.exports = Tag;
