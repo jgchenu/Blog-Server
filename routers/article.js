@@ -9,6 +9,6 @@ router.get('/', controller.getAllArticle)
 router.get('/:id', controller.getArticleDetail)
 //文章发布
 router.post('/', controller.subArticle)
-
-
+//文章修改
+router.put('/:id',controller.editArticle)
 module.exports = router;

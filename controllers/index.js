@@ -3,6 +3,7 @@ const {
     getAllArticle,
     getArticleDetail,
     subArticle,
+    editArticle
 } = require('./article.js')
 const {
     getArchive
@@ -11,13 +12,18 @@ const {
     getTag
 } = require('./tag')
 const {
-    getPerson
+    getPerson,
+    editPerson
 } = require('./person')
 module.exports = {
     getAllArticle,
     getArticleDetail,
     subArticle,
+    editArticle,
+
     getTag,
     getArchive,
-    getPerson
+    
+    getPerson,
+    editPerson
 }

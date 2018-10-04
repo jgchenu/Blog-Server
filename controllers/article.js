@@ -56,6 +56,51 @@ exports.getArticleDetail = async (ctx) => {
         data
     }
 }
+exports.editArticle = async (ctx) => {
+    try {
+        const id = ctx.params.id;
+        const requestData = ctx.request.body
+        const articleData = await Article.update({
+            title: requestData.title,
+        }, {
+            where: {
+                id
+            },
+            fields: ['title']
+        })
+        const contentData = await Content.update({
+            value: requestData.content,
+        }, {
+            where: {
+                articleId: id
+            },
+            fields: ['value']
+        })
+        await Tag.destroy({
+            where: {
+                articleId: id
+            }
+        })
+        const tagData = await Tag.bulkCreate(requestData.tags.map(item => ({
+            name: item,
+            articleId: id
+        })))
+        const data = { ...articleData,
+            content: contentData,
+            tag: tagData
+        }
+        ctx.body = {
+            code: 200,
+            data
+        }
+    } catch (error) {
+        ctx.body = {
+            code: 500,
+            message: error
+        }
+    }
+
+}
 exports.subArticle = async (ctx) => {
     try {
         const requestData = ctx.request.body
