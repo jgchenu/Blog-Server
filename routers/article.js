@@ -2,7 +2,6 @@ const Router = require('koa-router')
 const controller = require('../controllers/index.js')
 
 
-// const Sequelize = require('sequelize')
 let router = new Router()
 //文章列表获取
 router.get('/', controller.getAllArticle)
@@ -10,4 +9,6 @@ router.get('/', controller.getAllArticle)
 router.get('/:id', controller.getArticleDetail)
 //文章发布
 router.post('/', controller.subArticle)
+
+
 module.exports = router;

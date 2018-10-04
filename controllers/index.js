@@ -5,11 +5,19 @@ const {
     subArticle,
 } = require('./article.js')
 const {
+    getArchive
+} = require('./archive.js')
+const {
     getTag
 } = require('./tag')
+const {
+    getPerson
+} = require('./person')
 module.exports = {
     getAllArticle,
     getArticleDetail,
     subArticle,
-    getTag
+    getTag,
+    getArchive,
+    getPerson
 }

@@ -1,5 +1,7 @@
 const sequelize = require('../db')
 const Sequelize = require('sequelize');
+const moment = require('moment')
+
 const {
     INTEGER,
     STRING
@@ -18,6 +20,18 @@ const Tag = sequelize.define('tag', {
     articleId: {
         type: INTEGER(11),
         allowNull: false
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        get() {
+            return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+        }
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+        }
     }
 })
 Tag.associate = function (models) {

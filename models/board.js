@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
+const moment = require('moment')
+
 const {
     STRING,
     INTEGER,
@@ -22,6 +24,18 @@ const Board = sequelize.define('board', {
     toId: {
         type: INTEGER(11),
         allowNull: false
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        get() {
+            return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+        }
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+        }
     }
 })
 

@@ -18,5 +18,4 @@ for (let key in models) {
   models[key].associate && models[key].associate(models);
 }
 models['sequelize'] = db;
-console.log()
 module.exports = models;

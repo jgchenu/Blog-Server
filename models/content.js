@@ -1,5 +1,7 @@
 const sequelize = require('../db')
 const Sequelize = require('sequelize');
+const moment = require('moment')
+
 const {
     INTEGER,
     TEXT
@@ -17,6 +19,18 @@ const Content = sequelize.define('content', {
         type: INTEGER(11),
         allowNull: false
     },
+    createdAt: {
+        type: Sequelize.DATE,
+        get() {
+            return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+        }
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+        }
+    }
 })
 Content.associate = function (models) {
     models.content.belongsTo(models.article, {

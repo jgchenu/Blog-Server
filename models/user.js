@@ -1,9 +1,12 @@
 const sequelize = require("../db.js");
 const Sequelize = require("sequelize");
+const moment = require('moment')
+
 const {
   INTEGER,
   STRING,
-  TINYINT
+  TINYINT,
+  TEXT
 } = Sequelize;
 const User = sequelize.define(
   "user", {
@@ -24,6 +27,22 @@ const User = sequelize.define(
       type: TINYINT(1),
       allowNull: false,
       defaultValue: 0
+    },
+    introduction: {
+      type: TEXT(),
+      allowNull: false
+    },
+    createdAt: {
+      type: Sequelize.DATE,
+      get() {
+        return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+      }
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      get() {
+        return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+      }
     }
   });
 User.associate = function (models) {
