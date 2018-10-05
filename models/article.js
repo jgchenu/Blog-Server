@@ -50,5 +50,7 @@ Article.associate = function (models) {
     })
     models.article.hasOne(models.content)
     models.article.hasMany(models.tag);
+    models.article.hasMany(models.comment);
+
 }
 module.exports = Article;

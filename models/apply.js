@@ -1,5 +1,6 @@
 const sequelize = require('../db')
 const Sequelize = require('sequelize');
+const User = require('./user');
 const moment = require('moment')
 
 const {
@@ -7,7 +8,7 @@ const {
     TEXT,
     TINYINT
 } = Sequelize;
-const Comment = sequelize.define('comment', {
+const Apply = sequelize.define('apply', {
     id: {
         primaryKey: true,
         type: INTEGER(11),
@@ -21,18 +22,14 @@ const Comment = sequelize.define('comment', {
         type: INTEGER(11),
         allowNull: false
     },
+    //所属的评论id
+    commentId: {
+        type: INTEGER(11),
+        allowNull: false
+    },
     toId: {
         type: INTEGER(11),
         allowNull: false
-    },
-    // 评论类型：留言板，或者文章评论 0-文章评论，1留言板
-    commentType: {
-        type: TINYINT(1),
-        allowNull: false
-    },
-    //所属的文章id
-    articleId: {
-        type: INTEGER(11),
     },
     createdAt: {
         type: Sequelize.DATE,
@@ -47,21 +44,21 @@ const Comment = sequelize.define('comment', {
         }
     }
 })
-
-Comment.associate = function (models) {
-    models.comment.belongsTo(models.article, {
-        foreignKey: 'articleId',
+Apply.associate = function (models) {
+    models.apply.belongsTo(models.comment, {
+        foreignKey: 'commentId',
         targetKey: 'id',
     })
-    models.comment.belongsTo(models.user, {
+    models.apply.belongsTo(models.user, {
         foreignKey: 'sayId',
         targetKey: 'id',
     })
-    models.comment.belongsTo(models.user, {
+    models.apply.belongsTo(models.user, {
         foreignKey: 'toId',
         targetKey: 'id',
     })
-    models.comment.hasMany(models.apply)
 
 }
-module.exports = Comment;
+
+
+module.exports = Apply;
