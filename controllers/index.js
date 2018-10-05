@@ -9,7 +9,8 @@ const {
     getArchive
 } = require('./archive.js')
 const {
-    getTag
+    getTag,
+    getTagArticle
 } = require('./tag')
 const {
     getPerson,
@@ -22,6 +23,8 @@ module.exports = {
     editArticle,
 
     getTag,
+    getTagArticle,
+    
     getArchive,
     
     getPerson,
