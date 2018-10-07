@@ -16,8 +16,6 @@ exports.getAllArticle = async (ctx) => {
             ['updatedAt', 'DESC'],
         ],
         include: [{
-            model: User,
-        }, {
             model: Content,
         }, {
             model: Tag
@@ -44,8 +42,6 @@ exports.getArticleDetail = async (ctx) => {
             id
         },
         include: [{
-            model: User,
-        }, {
             model: Content,
         }, {
             model: Tag

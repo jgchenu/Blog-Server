@@ -13,6 +13,9 @@ const {
     getTagArticle
 } = require('./tag')
 const {
+    getBoardComment
+}=require('./comment')
+const {
     getPerson,
     editPerson
 } = require('./person')
@@ -28,5 +31,7 @@ module.exports = {
     getArchive,
     
     getPerson,
-    editPerson
+    editPerson,
+
+    getBoardComment
 }

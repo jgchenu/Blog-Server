@@ -45,19 +45,16 @@ const Apply = sequelize.define('apply', {
     }
 })
 Apply.associate = function (models) {
-    models.apply.belongsTo(models.comment, {
-        foreignKey: 'commentId',
-        targetKey: 'id',
+    models.apply.hasMany(models.user, {
+        as: 'applySayUser',
+        foreignKey: 'id',
+        sourceKey: 'sayId'
     })
-    models.apply.belongsTo(models.user, {
-        foreignKey: 'sayId',
-        targetKey: 'id',
+    models.apply.hasMany(models.user, {
+        as: 'applyToUser',
+        foreignKey: 'id',
+        sourceKey: 'toId'
     })
-    models.apply.belongsTo(models.user, {
-        foreignKey: 'toId',
-        targetKey: 'id',
-    })
-
 }
 
 

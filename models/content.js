@@ -32,10 +32,5 @@ const Content = sequelize.define('content', {
         }
     }
 })
-Content.associate = function (models) {
-    models.content.belongsTo(models.article, {
-        foreignKey: 'articleId',
-        targetKey: 'id',
-    })
-}
+
 module.exports = Content;

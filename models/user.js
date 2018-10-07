@@ -32,6 +32,11 @@ const User = sequelize.define(
       type: TEXT(),
       allowNull: false
     },
+    avatar: {
+      type: STRING(255),
+      defaultValue: 'http://test.jgchen.xin/static/images/1.jpg',
+      allowNull: false
+    },
     createdAt: {
       type: Sequelize.DATE,
       get() {
@@ -46,8 +51,6 @@ const User = sequelize.define(
     }
   });
 User.associate = function (models) {
-  models.user.hasMany(models.article)
-  models.user.hasMany(models.comment)
-  models.user.hasMany(models.apply)
+
 }
 module.exports = User

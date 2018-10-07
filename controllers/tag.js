@@ -35,8 +35,6 @@ exports.getTagArticle = async (ctx) => {
         let start = (page - 1) * pageSize;
         const tagData = await Article.findAll({
             include: [{
-                model: User,
-            }, {
                 model: Content,
             }, {
                 model: Tag,

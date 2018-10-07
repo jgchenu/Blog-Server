@@ -44,13 +44,15 @@ const Article = sequelize.define('article', {
 
 )
 Article.associate = function (models) {
-    models.article.belongsTo(models.user, {
-        foreignKey: 'userId',
-        targetKey: 'id',
+    models.article.hasOne(models.content, {
+        foreignKey: 'articleId',
+        sourceKey: 'id',
     })
-    models.article.hasOne(models.content)
     models.article.hasMany(models.tag);
-    models.article.hasMany(models.comment);
+    models.article.hasMany(models.comment, {
+        foreignKey: 'articleId',
+        sourceKey: 'id',
+    });
 
 }
 module.exports = Article;
