@@ -1,10 +1,17 @@
 const Koa = require('koa');
 const app = new Koa;
-const bodyParser = require('koa-bodyparser')
+// const bodyParser = require('koa-bodyparser')
+const koaBody = require('koa-body')
 const cors = require('koa2-cors')
 const router = require('./router')
-//使用body解析
-app.use(bodyParser())
+
+//使用koabody解析上传文件
+app.use(koaBody({
+  multipart: true
+}));
+//使用bodyparse解析
+// app.use(bodyParser())
+
 //跨域
 app.use(cors())
 //加载路由中间件

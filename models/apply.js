@@ -20,7 +20,7 @@ const Apply = sequelize.define('apply', {
     },
     sayId: {
         type: INTEGER(11),
-        allowNull: false
+        allowNull: false,
     },
     //所属的评论id
     commentId: {
@@ -46,15 +46,16 @@ const Apply = sequelize.define('apply', {
 })
 Apply.associate = function (models) {
     models.apply.hasMany(models.user, {
-        as: 'applySayUser',
-        foreignKey: 'id',
-        sourceKey: 'sayId'
-    })
-    models.apply.hasMany(models.user, {
         as: 'applyToUser',
         foreignKey: 'id',
         sourceKey: 'toId'
     })
+    models.apply.hasMany(models.user, {
+        as: 'applySayUser',
+        foreignKey: 'id',
+        sourceKey: 'sayId'
+    })
+
 }
 
 

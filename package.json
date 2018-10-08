@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "koa": "^2.5.1",
+    "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
+    "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.5",
     "mysql2": "^1.5.3",

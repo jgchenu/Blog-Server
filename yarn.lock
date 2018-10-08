@@ -2,6 +2,17 @@
 # yarn lockfile v1
 
 
+"@types/events@*":
+  version "1.2.0"
+  resolved "http://r.cnpmjs.org/@types/events/download/@types/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
+
+"@types/formidable@^1.0.31":
+  version "1.0.31"
+  resolved "http://r.cnpmjs.org/@types/formidable/download/@types/formidable-1.0.31.tgz#274f9dc2d0a1a9ce1feef48c24ca0859e7ec947b"
+  dependencies:
+    "@types/events" "*"
+    "@types/node" "*"
+
 "@types/geojson@^1.0.0":
   version "1.0.6"
   resolved "http://r.cnpmjs.org/@types/geojson/download/@types/geojson-1.0.6.tgz#3e02972728c69248c2af08d60a48cbb8680fffdf"
@@ -25,9 +36,24 @@ any-promise@^1.1.0:
   version "1.3.0"
   resolved "http://r.cnpmjs.org/any-promise/download/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
 
+append-field@^0.1.0:
+  version "0.1.0"
+  resolved "http://r.cnpmjs.org/append-field/download/append-field-0.1.0.tgz#6ddc58fa083c7bc545d3c5995b2830cc2366d44a"
+
 bluebird@^3.4.6, bluebird@^3.5.0:
   version "3.5.2"
   resolved "http://r.cnpmjs.org/bluebird/download/bluebird-3.5.2.tgz#1be0908e054a751754549c270489c1505d4ab15a"
+
+buffer-from@^1.0.0:
+  version "1.1.1"
+  resolved "http://r.cnpmjs.org/buffer-from/download/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
+
+busboy@^0.2.11:
+  version "0.2.14"
+  resolved "http://r.cnpmjs.org/busboy/download/busboy-0.2.14.tgz#6c2a622efcf47c57bbbe1e2a9c37ad36c7925453"
+  dependencies:
+    dicer "0.2.5"
+    readable-stream "1.1.x"
 
 bytes@3.0.0:
   version "3.0.0"
@@ -54,6 +80,15 @@ cls-bluebird@^2.1.0:
     is-bluebird "^1.0.2"
     shimmer "^1.1.0"
 
+co-body@^5.1.1:
+  version "5.2.0"
+  resolved "http://r.cnpmjs.org/co-body/download/co-body-5.2.0.tgz#5a0a658c46029131e0e3a306f67647302f71c124"
+  dependencies:
+    inflation "^2.0.0"
+    qs "^6.4.0"
+    raw-body "^2.2.0"
+    type-is "^1.6.14"
+
 co-body@^6.0.0:
   version "6.0.0"
   resolved "http://r.cnpmjs.org/co-body/download/co-body-6.0.0.tgz#965b9337d7f5655480787471f4237664820827e3"
@@ -66,6 +101,15 @@ co-body@^6.0.0:
 co@^4.6.0:
   version "4.6.0"
   resolved "http://r.cnpmjs.org/co/download/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
+
+concat-stream@^1.5.0:
+  version "1.6.2"
+  resolved "http://r.cnpmjs.org/concat-stream/download/concat-stream-1.6.2.tgz#904bdf194cd3122fc675c77fc4ac3d4ff0fd1a34"
+  dependencies:
+    buffer-from "^1.0.0"
+    inherits "^2.0.3"
+    readable-stream "^2.2.2"
+    typedarray "^0.0.6"
 
 content-disposition@~0.5.2:
   version "0.5.2"
@@ -85,6 +129,10 @@ cookies@~0.7.1:
 copy-to@^2.0.1:
   version "2.0.1"
   resolved "http://r.cnpmjs.org/copy-to/download/copy-to-2.0.1.tgz#2680fbb8068a48d08656b6098092bdafc906f4a5"
+
+core-util-is@~1.0.0:
+  version "1.0.2"
+  resolved "http://r.cnpmjs.org/core-util-is/download/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
 debug@^2.6.9:
   version "2.6.9"
@@ -124,6 +172,13 @@ destroy@^1.0.4:
   version "1.0.4"
   resolved "http://r.cnpmjs.org/destroy/download/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
 
+dicer@0.2.5:
+  version "0.2.5"
+  resolved "http://r.cnpmjs.org/dicer/download/dicer-0.2.5.tgz#5996c086bb33218c812c090bddc09cd12facb70f"
+  dependencies:
+    readable-stream "1.1.x"
+    streamsearch "0.1.2"
+
 dottie@^2.0.0:
   version "2.0.0"
   resolved "http://r.cnpmjs.org/dottie/download/dottie-2.0.0.tgz#da191981c8b8d713ca0115d5898cf397c2f0ddd0"
@@ -143,6 +198,10 @@ escape-html@^1.0.3:
 esprima@~4.0.0:
   version "4.0.1"
   resolved "http://r.cnpmjs.org/esprima/download/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
+
+formidable@^1.1.1:
+  version "1.2.1"
+  resolved "http://r.cnpmjs.org/formidable/download/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
 
 fresh@~0.5.2:
   version "0.5.2"
@@ -204,7 +263,7 @@ inflection@1.12.0:
   version "1.12.0"
   resolved "http://r.cnpmjs.org/inflection/download/inflection-1.12.0.tgz#a200935656d6f5f6bc4dc7502e1aecb703228416"
 
-inherits@2.0.3:
+inherits@2.0.3, inherits@^2.0.3, inherits@~2.0.1, inherits@~2.0.3:
   version "2.0.3"
   resolved "http://r.cnpmjs.org/inherits/download/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
@@ -224,9 +283,21 @@ isarray@0.0.1:
   version "0.0.1"
   resolved "http://r.cnpmjs.org/isarray/download/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
 
+isarray@~1.0.0:
+  version "1.0.0"
+  resolved "http://r.cnpmjs.org/isarray/download/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
+
 keygrip@~1.0.2:
   version "1.0.3"
   resolved "http://r.cnpmjs.org/keygrip/download/keygrip-1.0.3.tgz#399d709f0aed2bab0a059e0cdd3a5023a053e1dc"
+
+koa-body@^4.0.4:
+  version "4.0.4"
+  resolved "http://r.cnpmjs.org/koa-body/download/koa-body-4.0.4.tgz#70c04ba21b37f230476c280a41858dc37ca838ee"
+  dependencies:
+    "@types/formidable" "^1.0.31"
+    co-body "^5.1.1"
+    formidable "^1.1.1"
 
 koa-bodyparser@^4.2.1:
   version "4.2.1"
@@ -255,6 +326,12 @@ koa-convert@^1.2.0:
 koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "http://r.cnpmjs.org/koa-is-json/download/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
+
+koa-multer@^1.0.2:
+  version "1.0.2"
+  resolved "http://r.cnpmjs.org/koa-multer/download/koa-multer-1.0.2.tgz#d38f7ffd1db97b1aad33e7774732f000ebd67259"
+  dependencies:
+    multer "1.3.0"
 
 koa-router@^7.4.0:
   version "7.4.0"
@@ -337,6 +414,16 @@ mime-types@^2.1.18, mime-types@~2.1.18:
   dependencies:
     mime-db "~1.36.0"
 
+minimist@0.0.8:
+  version "0.0.8"
+  resolved "http://r.cnpmjs.org/minimist/download/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
+
+mkdirp@^0.5.1:
+  version "0.5.1"
+  resolved "http://r.cnpmjs.org/mkdirp/download/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
+  dependencies:
+    minimist "0.0.8"
+
 moment-timezone@^0.5.14:
   version "0.5.21"
   resolved "http://r.cnpmjs.org/moment-timezone/download/moment-timezone-0.5.21.tgz#3cba247d84492174dbf71de2a9848fa13207b845"
@@ -354,6 +441,19 @@ ms@2.0.0:
 ms@^2.1.1:
   version "2.1.1"
   resolved "http://r.cnpmjs.org/ms/download/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
+
+multer@1.3.0:
+  version "1.3.0"
+  resolved "http://r.cnpmjs.org/multer/download/multer-1.3.0.tgz#092b2670f6846fa4914965efc8cf94c20fec6cd2"
+  dependencies:
+    append-field "^0.1.0"
+    busboy "^0.2.11"
+    concat-stream "^1.5.0"
+    mkdirp "^0.5.1"
+    object-assign "^3.0.0"
+    on-finished "^2.3.0"
+    type-is "^1.6.4"
+    xtend "^4.0.0"
 
 mysql2@^1.5.3:
   version "1.6.1"
@@ -380,6 +480,10 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "http://r.cnpmjs.org/negotiator/download/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+object-assign@^3.0.0:
+  version "3.0.0"
+  resolved "http://r.cnpmjs.org/object-assign/download/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
+
 object-assign@^4.1.1:
   version "4.1.1"
   resolved "http://r.cnpmjs.org/object-assign/download/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -404,15 +508,19 @@ path-to-regexp@^1.1.1:
   dependencies:
     isarray "0.0.1"
 
+process-nextick-args@~2.0.0:
+  version "2.0.0"
+  resolved "http://r.cnpmjs.org/process-nextick-args/download/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
+
 pseudomap@^1.0.2:
   version "1.0.2"
   resolved "http://r.cnpmjs.org/pseudomap/download/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
-qs@^6.5.2:
+qs@^6.4.0, qs@^6.5.2:
   version "6.5.2"
   resolved "http://r.cnpmjs.org/qs/download/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
-raw-body@^2.3.3:
+raw-body@^2.2.0, raw-body@^2.3.3:
   version "2.3.3"
   resolved "http://r.cnpmjs.org/raw-body/download/raw-body-2.3.3.tgz#1b324ece6b5706e153855bc1148c65bb7f6ea0c3"
   dependencies:
@@ -420,6 +528,27 @@ raw-body@^2.3.3:
     http-errors "1.6.3"
     iconv-lite "0.4.23"
     unpipe "1.0.0"
+
+readable-stream@1.1.x:
+  version "1.1.14"
+  resolved "http://r.cnpmjs.org/readable-stream/download/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
+
+readable-stream@^2.2.2:
+  version "2.3.6"
+  resolved "http://r.cnpmjs.org/readable-stream/download/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.3"
+    isarray "~1.0.0"
+    process-nextick-args "~2.0.0"
+    safe-buffer "~5.1.1"
+    string_decoder "~1.1.1"
+    util-deprecate "~1.0.1"
 
 redeyed@~2.1.0:
   version "2.1.1"
@@ -433,6 +562,10 @@ retry-as-promised@^2.3.2:
   dependencies:
     bluebird "^3.4.6"
     debug "^2.6.9"
+
+safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+  version "5.1.2"
+  resolved "http://r.cnpmjs.org/safe-buffer/download/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
 
 "safer-buffer@>= 2.1.2 < 3":
   version "2.1.2"
@@ -484,6 +617,20 @@ sqlstring@2.3.1:
   version "1.5.0"
   resolved "http://r.cnpmjs.org/statuses/download/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
 
+streamsearch@0.1.2:
+  version "0.1.2"
+  resolved "http://r.cnpmjs.org/streamsearch/download/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
+
+string_decoder@~0.10.x:
+  version "0.10.31"
+  resolved "http://r.cnpmjs.org/string_decoder/download/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
+
+string_decoder@~1.1.1:
+  version "1.1.1"
+  resolved "http://r.cnpmjs.org/string_decoder/download/string_decoder-1.1.1.tgz#9cf1611ba62685d7030ae9e4ba34149c3af03fc8"
+  dependencies:
+    safe-buffer "~5.1.0"
+
 terraformer-wkt-parser@^1.1.2:
   version "1.2.0"
   resolved "http://r.cnpmjs.org/terraformer-wkt-parser/download/terraformer-wkt-parser-1.2.0.tgz#c9d6ac3dff25f4c0bd344e961f42694961834c34"
@@ -505,12 +652,16 @@ toposort-class@^1.0.1:
   version "1.0.1"
   resolved "http://r.cnpmjs.org/toposort-class/download/toposort-class-1.0.1.tgz#7ffd1f78c8be28c3ba45cd4e1a3f5ee193bd9988"
 
-type-is@^1.6.16:
+type-is@^1.6.14, type-is@^1.6.16, type-is@^1.6.4:
   version "1.6.16"
   resolved "http://r.cnpmjs.org/type-is/download/type-is-1.6.16.tgz#f89ce341541c672b25ee7ae3c73dee3b2be50194"
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.18"
+
+typedarray@^0.0.6:
+  version "0.0.6"
+  resolved "http://r.cnpmjs.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 unpipe@1.0.0:
   version "1.0.0"
@@ -519,6 +670,10 @@ unpipe@1.0.0:
 urijs@^1.19.0:
   version "1.19.1"
   resolved "http://r.cnpmjs.org/urijs/download/urijs-1.19.1.tgz#5b0ff530c0cbde8386f6342235ba5ca6e995d25a"
+
+util-deprecate@~1.0.1:
+  version "1.0.2"
+  resolved "http://r.cnpmjs.org/util-deprecate/download/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
 uuid@^3.2.1:
   version "3.3.2"
@@ -537,6 +692,10 @@ wkx@^0.4.1:
   resolved "http://r.cnpmjs.org/wkx/download/wkx-0.4.5.tgz#a85e15a6e69d1bfaec2f3c523be3dfa40ab861d0"
   dependencies:
     "@types/node" "*"
+
+xtend@^4.0.0:
+  version "4.0.1"
+  resolved "http://r.cnpmjs.org/xtend/download/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
 yallist@^2.1.2:
   version "2.1.2"

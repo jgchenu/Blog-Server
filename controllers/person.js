@@ -1,6 +1,8 @@
 const model = require('../model');
 const User = model.user;
 
+
+
 //获取个人信息
 exports.getPerson = async (ctx) => {
     const data = await User.findOne({
@@ -32,5 +34,12 @@ exports.editPerson = async (ctx) => {
     ctx.body = {
         code: 200,
         data
+    }
+}
+exports.editAvatar = async (ctx) => {
+    console.log(JSON.stringify(ctx.request.files))
+    ctx.body = {
+        code: 200,
+        // data: ctx.request.body
     }
 }
