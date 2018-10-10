@@ -21,10 +21,11 @@ const Comment = sequelize.define('comment', {
         type: INTEGER(11),
         allowNull: false
     },
-    // 评论类型：留言板，或者文章评论 0-文章评论，1留言板
+    // 评论类型：留言板或者文章评论    1-评论，2-留言板
     commentType: {
-        type: TINYINT(1),
-        allowNull: false
+        type: TINYINT(2),
+        allowNull: false,
+        defaultValue: 1
     },
     //所属的文章id
     articleId: {
@@ -51,10 +52,10 @@ Comment.associate = function (models) {
         sourceKey: 'id',
         constraints: false,
     })
-    models.comment.hasMany(models.user, {
+    models.comment.belongsTo(models.user, {
         as: 'sayUser',
-        foreignKey: 'id',
-        sourceKey: 'sayId',
+        foreignKey: 'sayId',
+        targetKey: 'id',
         constraints: false,
     })
 }

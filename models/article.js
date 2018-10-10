@@ -47,11 +47,15 @@ Article.associate = function (models) {
     models.article.hasOne(models.content, {
         foreignKey: 'articleId',
         sourceKey: 'id',
+        constraints: false,
+
     })
     models.article.hasMany(models.tag);
     models.article.hasMany(models.comment, {
         foreignKey: 'articleId',
         sourceKey: 'id',
+        constraints: false,
+
     });
 
 }

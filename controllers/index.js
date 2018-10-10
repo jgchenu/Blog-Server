@@ -18,7 +18,8 @@ const {
 } = require('./tag')
 // 留言板处理
 const {
-    getBoardComment
+    getBoardComment,
+    subComment
 } = require('./comment')
 // 编辑个人资料处理
 const {
@@ -41,5 +42,6 @@ module.exports = {
     editPerson,
     editAvatar,
 
-    getBoardComment
+    getBoardComment,
+    subComment
 }
