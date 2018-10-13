@@ -32,7 +32,7 @@ exports.getAllArticle = async (ctx) => {
         ],
     })
     ctx.body = {
-        code:200,
+        code: 200,
         data,
         ...count.dataValues
     }
@@ -167,4 +167,24 @@ exports.subArticle = async (ctx) => {
         }
     }
 
+}
+//删除文章
+exports.deleteArticle = async (ctx) => {
+    try {
+        const id = ctx.params.id;
+        const data = await Article.destroy({
+            where: {
+                id
+            },
+        },{force: false})
+        ctx.body={
+            code:200,
+            data
+        }
+    } catch (error) {
+        ctx.body = {
+            code: 500,
+            message: error
+        }
+    }
 }

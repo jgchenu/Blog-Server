@@ -5,7 +5,8 @@ const {
     getAllArticle,
     getArticleDetail,
     subArticle,
-    editArticle
+    editArticle,
+    deleteArticle
 } = require('./article.js')
 // 归档处理
 const {
@@ -33,6 +34,7 @@ module.exports = {
     getArticleDetail,
     subArticle,
     editArticle,
+    deleteArticle,
 
     getTag,
     getTagArticle,

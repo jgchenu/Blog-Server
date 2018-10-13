@@ -11,4 +11,6 @@ router.get('/:id', controller.getArticleDetail)
 router.post('/', controller.subArticle)
 //文章修改
 router.put('/:id',controller.editArticle)
+//文章删除
+router.delete('/:id',controller.deleteArticle)
 module.exports = router;

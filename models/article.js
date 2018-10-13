@@ -48,7 +48,9 @@ const Article = sequelize.define('article', {
 
     },
 
-
+    {
+        paranoid: true
+    }
 )
 Article.associate = function (models) {
     models.article.hasOne(models.content, {
