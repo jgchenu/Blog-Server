@@ -5,7 +5,8 @@ const moment = require('moment')
 const {
     INTEGER,
     TEXT,
-    TINYINT
+    TINYINT,
+    DATE
 } = Sequelize;
 const Comment = sequelize.define('comment', {
     id: {
@@ -23,7 +24,7 @@ const Comment = sequelize.define('comment', {
     },
     // 评论类型：留言板或者文章评论    1-评论，2-留言板
     commentType: {
-        type: TINYINT(2),
+        type: TINYINT(1),
         allowNull: false,
         defaultValue: 1
     },
@@ -32,17 +33,18 @@ const Comment = sequelize.define('comment', {
         type: INTEGER(11),
     },
     createdAt: {
-        type: Sequelize.DATE,
+        type: DATE,
         get() {
             return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
         }
     },
     updatedAt: {
-        type: Sequelize.DATE,
+        type: DATE,
         get() {
             return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
         }
-    }
+    },
+
 })
 
 Comment.associate = function (models) {
@@ -55,6 +57,12 @@ Comment.associate = function (models) {
     models.comment.belongsTo(models.user, {
         as: 'sayUser',
         foreignKey: 'sayId',
+        targetKey: 'id',
+        constraints: false,
+    })
+    models.comment.belongsTo(models.article, {
+        as: 'article',
+        foreignKey: 'articleId',
         targetKey: 'id',
         constraints: false,
     })

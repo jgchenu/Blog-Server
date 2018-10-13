@@ -4,6 +4,7 @@ const moment = require('moment')
 const {
     INTEGER,
     STRING,
+    DATE
 } = Sequelize;
 const Article = sequelize.define('article', {
         id: {
@@ -27,13 +28,19 @@ const Article = sequelize.define('article', {
             allowNull: false
         },
         createdAt: {
-            type: Sequelize.DATE,
+            type: DATE,
             get() {
                 return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
             }
         },
         updatedAt: {
-            type: Sequelize.DATE,
+            type: DATE,
+            get() {
+                return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+            }
+        },
+        deletedAt: {
+            type: DATE,
             get() {
                 return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
             }

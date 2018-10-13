@@ -16,10 +16,11 @@ const {
     getTag,
     getTagArticle
 } = require('./tag')
-// 留言板处理
+// 评论处理（文章评论，留言板评论）
 const {
     getBoardComment,
-    subComment
+    subComment,
+    getArticleComment
 } = require('./comment')
 // 编辑个人资料处理
 const {
@@ -43,5 +44,6 @@ module.exports = {
     editAvatar,
 
     getBoardComment,
-    subComment
+    subComment,
+    getArticleComment
 }

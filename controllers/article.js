@@ -3,10 +3,13 @@ const sequelize = require('../db')
 
 const Article = model.article;
 const Comment = model.comment
+const Apply = model.apply
+
 const Content = model.content;
 const User = model.user
 const Tag = model.tag;
 
+//获取所有文章
 exports.getAllArticle = async (ctx) => {
     let page = parseInt(ctx.request.query.page || 1);
     let pageSize = parseInt(ctx.request.query.pageSize || 10);
@@ -29,29 +32,65 @@ exports.getAllArticle = async (ctx) => {
         ],
     })
     ctx.body = {
+        code:200,
         data,
         ...count.dataValues
     }
 
 }
 
+//获取文章详情
 exports.getArticleDetail = async (ctx) => {
-    const id = ctx.params.id;
-    const data = await Article.findOne({
-        where: {
-            id
-        },
-        include: [{
-            model: Content,
-        }, {
-            model: Tag
-        }]
-    })
-    ctx.body = {
-        code: 200,
-        data
+    try {
+        const id = ctx.params.id;
+        const data = await Article.findOne({
+            where: {
+                id
+            },
+            include: [{
+                model: Content,
+            }, {
+                model: Tag
+            }, {
+                model: Comment,
+                include: [{
+                    model: Apply,
+                    as: 'apply',
+                    include: [{
+                        model: User,
+                        as: 'applySayUser',
+                        attributes: {
+                            exclude: ['password']
+                        }
+                    }, {
+                        model: User,
+                        as: 'applyToUser',
+                        attributes: {
+                            exclude: ['password']
+                        }
+                    }]
+                }, {
+                    model: User,
+                    as: 'sayUser',
+                    attributes: {
+                        exclude: ['password']
+                    }
+                }]
+            }]
+        })
+        ctx.body = {
+            code: 200,
+            data
+        }
+    } catch (error) {
+        ctx.body = {
+            code: 500,
+            message: error
+        }
     }
+
 }
+//编辑文章
 exports.editArticle = async (ctx) => {
     try {
         const id = ctx.params.id;
@@ -97,6 +136,7 @@ exports.editArticle = async (ctx) => {
     }
 
 }
+//发布文章
 exports.subArticle = async (ctx) => {
     try {
         const requestData = ctx.request.body

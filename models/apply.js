@@ -42,7 +42,7 @@ const Apply = sequelize.define('apply', {
         get() {
             return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
         }
-    }
+    },
 })
 Apply.associate = function (models) {
     // models.apply.hasMany(models.user, {
