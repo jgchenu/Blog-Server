@@ -18,6 +18,7 @@ const User = sequelize.define(
     userName: {
       type: STRING(255),
       unique: true,
+      allowNull: false
     },
     password: {
       type: STRING(255),
@@ -30,7 +31,8 @@ const User = sequelize.define(
     },
     introduction: {
       type: TEXT(),
-      allowNull: false
+      allowNull: false,
+      defaultValue: '<p>这个人很懒，什么都没有留下</p>'
     },
     avatar: {
       type: STRING(255),
