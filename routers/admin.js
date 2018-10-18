@@ -3,10 +3,9 @@ const AdminController = require('../controllers/admin.js')
 
 let router = new Router()
 //获取个人信息
-router.get('/', AdminController.getPerson)
+router.get('/', AdminController.getAdminInfo)
 //编辑个人信息
-router.put('/', AdminController.editPerson)
-//更改头像
-router.post('/editAvatar', AdminController.editAvatar)
+router.put('/', AdminController.editAdminInfo)
+
 
 module.exports = router

@@ -1,5 +1,5 @@
-const model = require('../model');
-const sequelize = require('./../db')
+const model = require('../app/model');
+const sequelize = require('../app/db')
 const Comment = model.comment;
 const Apply = model.apply;
 const User = model.user;
@@ -120,30 +120,23 @@ class CommentController {
     //发布留言板文章评论回复
     static async subComment(ctx) {
         try {
-            let {
-                sayId,
-                toId,
-                content,
-                commentType,
-                commentId,
-                articleId
-            } = ctx.request.body;
-            //对获得的字段格式化
-            sayId = parseInt(sayId)
-            toId = parseInt(toId)
-            commentType = parseInt(commentType)
-            commentId = parseInt(commentId)
-            articleId = parseInt(articleId)
+
+            const reqBody = ctx.request.body;
+            let content = reqBody.content;
+            let toId = +(reqBody.toId);
+            let commentType = +(reqBody.commentType);
+            let commentId = +(reqBody.commentId);
+            let articleId = +(reqBody.articleId);
+            let sayId = +(ctx.state.user.userId);
             //如果为留言评论,文章评论
             if (!toId) {
                 const commentData = await Comment.create({
                     sayId,
                     commentType,
                     content,
-                    articleId
+                    articleId: articleId ? articleId : null
                 })
-                console.log(commentData)
-                ctx.body = {
+                return ctx.body = {
                     code: 200,
                     data: commentData
                 }
@@ -157,7 +150,7 @@ class CommentController {
                     toId,
                     commentId
                 })
-                ctx.body = {
+                return ctx.body = {
                     code: 200,
                     data: applyData
                 }
@@ -165,7 +158,6 @@ class CommentController {
 
 
         } catch (error) {
-
             ctx.status = 500;
             throw (error)
         }

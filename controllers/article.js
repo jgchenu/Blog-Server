@@ -1,5 +1,5 @@
-const model = require('../model');
-const sequelize = require('../db')
+const model = require('../app/model');
+const sequelize = require('../app/db')
 
 const Article = model.article;
 const Comment = model.comment

@@ -1,4 +1,4 @@
-const sequelize = require('../db')
+const sequelize = require('../app/db')
 const Sequelize = require('sequelize');
 const moment = require('moment')
 

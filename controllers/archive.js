@@ -1,6 +1,6 @@
-const model = require('../model');
+const model = require('../app/model');
 const Article = model.article;
-const sequelize = require('./../db')
+const sequelize = require('../app/db')
 
 
 class ArchiveController {

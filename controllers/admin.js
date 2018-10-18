@@ -1,13 +1,11 @@
-const model = require('../model');
-const fs = require('fs')
+const model = require('../app/model');
 const User = model.user;
 
 class AdminController {
-    //获取个人信息
-    static async getPerson(ctx) {
+    //获取管理员信息
+    static async getAdminInfo(ctx) {
         const data = await User.findOne({
             where: {
-                id: 1,
                 authority: 1
             },
             attributes: {
@@ -19,47 +17,34 @@ class AdminController {
             data
         }
     }
-    //修改个人信息
-    static async editPerson(ctx) {
+    //修改管理员信息
+    static async editAdminInfo(ctx) {
+        const id = ctx.state.userId;
         const introduction = ctx.request.body.introduction;
-        const data = await User.update({
-            introduction,
-            fields: ['introduction']
-        }, {
+        const userData = await User.findOne({
             where: {
-                id: 1,
+                id,
                 authority: 1
+            },
+            attributes: {
+                exclude: ['password']
             }
         })
-        ctx.body = {
-            code: 200,
-            data
-        }
-    }
-    //修改个人头像
-    static async editAvatar(ctx) {
-        const file = ctx.request.files.avatar; // 获取上传文件
-        const reader = fs.createReadStream(file.path); // 创建可读流
-        const ext = file.name.split('.').pop(); // 获取上传文件扩展名
-        const uploadUrl = `upload/${Math.random().toString()}.${ext}`;
-        const upStream = fs.createWriteStream(`static/${uploadUrl}`); // 创建可写流
-        reader.pipe(upStream); // 可读流通过管道写入可写流
-        const envHost = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : '';
-        const avartarUrl = `${envHost}/${uploadUrl}`
-        const data = await User.update({
-            avatar: avartarUrl,
-            fields: ['avatar']
-        }, {
-            where: {
-                id: 1,
-                authority: 1
+        if (userData) {
+            userData.introduction = introduction;
+            const updateData = await userData.save();
+            return ctx.body = {
+                code: 200,
+                message: '修改成功',
+                data: updateData
             }
-        })
-        ctx.body = {
-            code: 200,
-            data,
-            avartar: avartarUrl
+        } else {
+            return ctx.body = {
+                code: 201,
+                message: '你不是管理员，你没有权限'
+            }
         }
     }
+
 }
 module.exports = AdminController;
