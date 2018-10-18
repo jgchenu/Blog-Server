@@ -7,6 +7,7 @@ const model = require('../app/model');
 const User = model.user; //引入user的model
 const fs = require('fs')
 class UserController {
+    //登录
     static async login(ctx) {
         try {
             const {
@@ -57,6 +58,7 @@ class UserController {
             }
         }
     }
+    //注册
     static async register(ctx) {
         try {
             const {
@@ -92,7 +94,8 @@ class UserController {
         }
 
     }
-    static async getInfo(ctx) { 
+    //获取个人信息
+    static async getInfo(ctx) {
         try {
             const userId = ctx.state.user.userId;
             const userData = await User.findOne({
