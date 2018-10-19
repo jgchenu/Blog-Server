@@ -22,7 +22,7 @@ class AdminController {
             if (!userData) {
                 return ctx.body = {
                     code: 204,
-                    message: '用户不是管理员'
+                    message: '你不是管理员哦'
                 }
             }
             if (userData) {
@@ -77,13 +77,14 @@ class AdminController {
         try {
             const authority = +ctx.state.user.authority;
             const introduction = ctx.request.body.introduction;
-            const id = ctx.state.userId;
+            const id = +ctx.state.user.userId;
+            console.log(ctx.state.user)
             const userData = await User.findOne({
                 where: {
                     id,
                     authority
                 },
-                attributes: ['userName', 'introduction', 'avatar']
+                attributes: ['userName', 'introduction', 'avatar','id']
             })
             if (userData) {
                 userData.introduction = introduction;
