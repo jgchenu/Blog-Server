@@ -6,6 +6,8 @@ let router = new Router()
 router.get('/', AdminController.getAdminInfo)
 //编辑个人信息
 router.put('/', AdminController.editAdminInfo)
+//管理员登录
+router.post('/login', AdminController.login)
 
 
 module.exports = router

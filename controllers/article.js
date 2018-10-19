@@ -93,6 +93,13 @@ class ArticleController {
     //编辑文章
     static async editArticle(ctx) {
         try {
+            const authority = ctx.state.user.authority;
+            if (!authority) {
+                ctx.status = 401
+                return ctx.body = {
+                    message: '你不是管理员，你没有权限,无法进行此项操作'
+                }
+            }
             const id = ctx.params.id;
             const requestData = ctx.request.body
             const articleData = await Article.update({
@@ -140,6 +147,13 @@ class ArticleController {
     static async subArticle(ctx) {
         try {
             const requestData = ctx.request.body
+            const authority = +ctx.state.user.authority;
+            if (!authority) {
+                ctx.status = 401
+                return ctx.body = {
+                    message: '你不是管理员，你没有权限,无法进行此项操作'
+                }
+            }
             const articleData = await Article.create({
                 title: requestData.title,
                 userId: 1

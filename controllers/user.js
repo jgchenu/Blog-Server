@@ -14,8 +14,6 @@ class UserController {
                 userName,
                 password
             } = ctx.request.body;
-
-
             const userData = await User.findOne({
                 where: {
                     userName
@@ -102,9 +100,7 @@ class UserController {
                 where: {
                     id: userId
                 },
-                attributes: {
-                    exclude: ['password']
-                }
+                attributes: ['userName', 'introduction', 'avatar']
             })
             return ctx.body = {
                 code: 200,
@@ -139,7 +135,7 @@ class UserController {
         ctx.body = {
             code: 200,
             data,
-            avartar: avartarUrl
+            avatar: avartarUrl
         }
     }
 }

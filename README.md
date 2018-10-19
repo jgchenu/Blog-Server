@@ -9,15 +9,17 @@ jgchen 的 blog-server
 - eslint
 - react
 - react-router
+- react-redux
+- redux
 - axios
 - antd
 - es6/7/8
-
-**后台**
+- jwt token 验证
+  **后台**
 
 - nodejs koa sequelize mysql
 
-此项目采用前后端分离的实现，后台接口基于 RESTful 规范设计，只提供数据，前端负责路由跳转，权限限制，渲染数据等。
+此项目采用前后端分离的实现，后台接口基于 RESTful 规范设计，提供数据,基于 jwt 权限限制，前端负责路由跳转，权限限制，渲染数据等。
 
 ### 实现的功能
 
@@ -37,6 +39,8 @@ jgchen 的 blog-server
 - [x] 博客分类
 - [x] 普通用户头像更换，注销
 - [x] 留言板
+- [x] jwt 登录
+- [x] 路由权限控制
 
 ### TODO
 
