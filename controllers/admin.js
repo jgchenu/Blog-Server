@@ -84,7 +84,7 @@ class AdminController {
                     id,
                     authority
                 },
-                attributes: ['userName', 'introduction', 'avatar','id']
+                attributes: ['userName', 'introduction', 'avatar', 'id']
             })
             if (userData) {
                 userData.introduction = introduction;
@@ -106,6 +106,8 @@ class AdminController {
         }
 
     }
+
+
 
 }
 module.exports = AdminController;

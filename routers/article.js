@@ -11,4 +11,6 @@ router.post('/', ArticleController.subArticle)
 router.put('/:id', ArticleController.editArticle)
 //文章删除
 router.delete('/:id', ArticleController.deleteArticle)
+//文章上传图片
+router.post('/upload',ArticleController.uploadImage)
 module.exports = router;
