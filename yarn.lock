@@ -581,10 +581,6 @@ koa-unless@1.0.7:
   version "1.0.7"
   resolved "http://r.cnpmjs.org/koa-unless/download/koa-unless-1.0.7.tgz#b9df375e2b4da3043918d48622520c2c0b79f032"
 
-koa2-cors@^2.0.5:
-  version "2.0.6"
-  resolved "http://r.cnpmjs.org/koa2-cors/download/koa2-cors-2.0.6.tgz#9ad23df3a0b9bb84530b46f5944f3fb576086554"
-
 koa@^2.5.1:
   version "2.5.3"
   resolved "http://r.cnpmjs.org/koa/download/koa-2.5.3.tgz#0b0c37eee3aac807a0a6ad36bc0b8660f12d83f1"

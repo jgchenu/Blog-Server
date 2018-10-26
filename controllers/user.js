@@ -121,7 +121,7 @@ class UserController {
         const uploadUrl = `upload/${Math.random().toString()}.${ext}`;
         const upStream = fs.createWriteStream(`static/${uploadUrl}`); // 创建可写流
         reader.pipe(upStream); // 可读流通过管道写入可写流
-        const envHost = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : '';
+        const envHost = '';
         const avartarUrl = `${envHost}/${uploadUrl}`
         const data = await User.update({
             avatar: avartarUrl,

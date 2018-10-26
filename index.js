@@ -2,7 +2,7 @@ const Koa = require('koa'); // web开发框架
 const Router = require('koa-router')
 const app = new Koa;
 const koaBody = require('koa-body') // 用于查询字符串解析到`ctx.request.query`
-const cors = require('koa2-cors') //跨域
+// const cors = require('koa2-cors') //跨域
 const router = new Router(); // 路由中间件
 const api = require('./app/router')
 const path = require('path') // 用于处理目录路径
@@ -12,7 +12,7 @@ const errorHandle = require('./middlewares/errorHandle')
 const secret = 'jgchen'
 console.log(process.env.NODE_ENV)
 //跨域
-process.env.NODE_ENV ? app.use(cors()) : '';
+// process.env.NODE_ENV ? app.use(cors()) : '';
 //设置静态资源的目录
 const staticPath = './static'
 app.use(koaStatic(
