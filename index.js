@@ -9,6 +9,8 @@ const path = require('path') // 用于处理目录路径
 const koaStatic = require('koa-static') // 静态资源处理
 const jwtKoa = require('koa-jwt'); // 用于路由权限控制
 const errorHandle = require('./middlewares/errorHandle')
+const timeoutHandle = require('./middlewares/timeoutHandle')
+
 const secret = 'jgchen'
 console.log(process.env.NODE_ENV)
 //跨域
@@ -60,7 +62,8 @@ app.use(jwtKoa({
 router.use('/api', api.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
-
+//超时处理
+app.use(timeoutHandle);
 
 //首页
 app.use(async (ctx) => {
