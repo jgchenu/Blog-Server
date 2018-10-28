@@ -12,8 +12,8 @@
             "logs",
             "static"
         ],
-        "exec_mode": "cluster_mode",               
-        "instances": 4,                             
+        "exec_mode": "fork",               
+        "instances": 1,                             
         "max_memory_restart": 8,                    
         "error_file": "./logs/app-err.log",         
         "out_file": "./logs/app-out.log",           
