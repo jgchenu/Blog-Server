@@ -140,6 +140,7 @@ class UserController {
             });
            return ctx.body = {
                 code: 200,
+                data,
                 avatar: avatarUrl
             };
         } catch (error) {

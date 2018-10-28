@@ -12,7 +12,6 @@ const errorHandle = require('./middlewares/errorHandle')
 const timeoutHandle = require('./middlewares/timeoutHandle')
 
 const secret = 'jgchen'
-console.log(process.env.NODE_ENV)
 //跨域
 // process.env.NODE_ENV ? app.use(cors()) : '';
 //设置静态资源的目录
