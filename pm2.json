@@ -14,7 +14,7 @@
         ],
         "exec_mode": "fork",               
         "instances": 1,                             
-        "max_memory_restart": 8,                    
+        "max_memory_restart": "500M",                    
         "error_file": "./logs/app-err.log",         
         "out_file": "./logs/app-out.log",           
         "merge_logs": true,                        
@@ -23,7 +23,7 @@
         "max_restarts": 30,                         
         "autorestart": true,                      
         "cron_restart": "",                         
-        "restart_delay": 60,                     
+        "restart_delay": 10,                     
         "env":{
            "NODE_ENV": "production",                
            "REMOTE_ADDR": "remote_addr"              
