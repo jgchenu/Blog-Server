@@ -149,10 +149,8 @@ class UserController {
                 avatar: avartarUrl
             };
         } catch (error) {
-            ctx.body = {
-                code: 500,
-                message: error
-            }
+            ctx.status = 500;
+            throw error;
         }
 
     }
