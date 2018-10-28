@@ -134,7 +134,7 @@ class UserController {
                     id
                 }
             });
-            ctx.body = {
+           return ctx.body = {
                 code: 200,
                 data,
                 avatar: avartarUrl
