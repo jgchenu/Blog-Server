@@ -130,7 +130,7 @@ class UserController {
             const upStream = fs.createWriteStream(`static/${uploadUrl}`); // 创建可写流
             reader.pipe(upStream); // 可读流通过管道写入可写流
             return ctx.body={
-                code:200,
+                code:201,
                 id,
                 file
             }
