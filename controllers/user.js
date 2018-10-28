@@ -119,12 +119,17 @@ class UserController {
         try {
             const id = ctx.state.user.userId;
             const file = ctx.request.files.avatar; // 获取上传文件
+             ctx.body={
+                code:200,
+                id,
+                file
+            }
             const reader = fs.createReadStream(file.path); // 创建可读流
             const ext = file.name.split(".").pop(); // 获取上传文件扩展名
             const uploadUrl = `avatar/${Date.now()}.${ext}`;
             const upStream = fs.createWriteStream(`static/${uploadUrl}`); // 创建可写流
             reader.pipe(upStream); // 可读流通过管道写入可写流
-            ctx.body={
+            return ctx.body={
                 code:200,
                 id,
                 file
