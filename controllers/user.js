@@ -129,14 +129,9 @@ class UserController {
             const uploadUrl = `avatar/${Date.now()}.${ext}`;
             const upStream = fs.createWriteStream(`static/${uploadUrl}`); // 创建可写流
             reader.pipe(upStream); // 可读流通过管道写入可写流
-            return ctx.body={
-                code:201,
-                id,
-                file
-            }
-            const avartarUrl = `/${uploadUrl}`;
+            const avatarUrl = `/${uploadUrl}`;
             const data = await User.update({
-                avatar: avartarUrl,
+                avatar: avatarUrl,
                 fields: ["avatar"]
             }, {
                 where: {
@@ -145,8 +140,7 @@ class UserController {
             });
            return ctx.body = {
                 code: 200,
-                data,
-                avatar: avartarUrl
+                avatar: avatarUrl
             };
         } catch (error) {
             ctx.status = 500;
