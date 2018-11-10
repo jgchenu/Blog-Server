@@ -1,5 +1,7 @@
 const model = require('../app/model');
 const sequelize = require('../app/db')
+const Sequelize = require('sequelize')
+const Op = sequelize.Op;
 const fs = require('fs')
 const Article = model.article;
 const Comment = model.comment
@@ -13,9 +15,10 @@ class ArticleController {
     //获取所有文章
     static async getAllArticle(ctx) {
         let page = parseInt(ctx.request.query.page || 1);
-        let pageSize = parseInt(ctx.request.query.pageSize || 10);
+        let keyword = ctx.request.query.keyword || '';
+        let pageSize = 10;
         let start = (page - 1) * pageSize;
-        const data = await Article.findAll({
+        const data = await Article.findAndCount({
             order: [
                 ['updatedAt', 'DESC'],
             ],
@@ -24,18 +27,19 @@ class ArticleController {
             }, {
                 model: Tag
             }],
+            where: {
+                title: {
+                    [Op.like]: `%${keyword}%`,
+                }
+            },
             offset: start,
             limit: pageSize
         })
-        const count = await Article.findOne({
-            attributes: [
-                [sequelize.fn('COUNT', sequelize.col('id')), 'count']
-            ],
-        })
+
         ctx.body = {
             code: 200,
-            data,
-            ...count.dataValues
+            data: data.rows,
+            count: data.count
         }
 
     }
@@ -213,7 +217,7 @@ class ArticleController {
         const uploadUrl = `upload/${Math.random().toString()}.${ext}`;
         const upStream = fs.createWriteStream(`static/${uploadUrl}`); // 创建可写流
         reader.pipe(upStream); // 可读流通过管道写入可写流
-        const envHost =  '';
+        const envHost = '';
         const avartarUrl = `${envHost}/${uploadUrl}`
         // ctx.errno = 0;
         // ctx.data = [avartarUrl]
