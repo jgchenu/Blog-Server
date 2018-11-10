@@ -15,7 +15,7 @@ class ArticleController {
     //获取所有文章
     static async getAllArticle(ctx) {
         let page = parseInt(ctx.request.query.page || 1);
-        let keyword = ctx.request.query.keyword || '';
+        let keyword =decodeURIComponent(ctx.request.query.keyword) || '';
         let pageSize = 10;
         let start = (page - 1) * pageSize;
         const data = await Article.findAndCount({
