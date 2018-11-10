@@ -40,10 +40,7 @@ const Article = sequelize.define('article', {
             }
         },
         deletedAt: {
-            type: DATE,
-            get() {
-                return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
-            }
+            type: DATE
         }
 
     },
