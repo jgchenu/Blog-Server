@@ -18,7 +18,7 @@ class ArticleController {
         let keyword =decodeURIComponent(ctx.request.query.keyword) || '';
         let pageSize = 10;
         let start = (page - 1) * pageSize;
-        const data = await Article.findAndCount({
+        const data = await Article.findAll({
             order: [
                 ['updatedAt', 'DESC'],
             ],
@@ -35,11 +35,15 @@ class ArticleController {
             offset: start,
             limit: pageSize
         })
-
+        const count = await Article.findOne({
+            attributes: [
+                [sequelize.fn('COUNT', sequelize.col('id')), 'count']
+            ],
+        })
         ctx.body = {
             code: 200,
-            data: data.rows,
-            count: data.count
+            data: data,
+            ...count.dataValues
         }
 
     }
