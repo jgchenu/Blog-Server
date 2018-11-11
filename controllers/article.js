@@ -18,13 +18,14 @@ class ArticleController {
     let pageSize = 10;
     let start = (page - 1) * pageSize;
     const data = await Article.findAll({
-      order: [["updatedAt", "DESC"]],
-      include: [
-        {
+      order: [
+        ["updatedAt", "DESC"]
+      ],
+      include: [{
           model: Content
         },
         {
-          model: Tag
+          model: Tag,
         }
       ],
       where: {
@@ -36,7 +37,9 @@ class ArticleController {
       limit: pageSize
     });
     const count = await Article.findOne({
-      attributes: [[sequelize.fn("COUNT", sequelize.col("id")), "count"]],
+      attributes: [
+        [sequelize.fn("COUNT", sequelize.col("id")), "count"]
+      ],
       where: {
         title: {
           [Op.like]: `%${keyword}%`
@@ -57,8 +60,7 @@ class ArticleController {
         where: {
           id
         },
-        include: [
-          {
+        include: [{
             model: Content
           },
           {
@@ -66,12 +68,10 @@ class ArticleController {
           },
           {
             model: Comment,
-            include: [
-              {
+            include: [{
                 model: Apply,
                 as: "apply",
-                include: [
-                  {
+                include: [{
                     model: User,
                     as: "applySayUser",
                     attributes: {
@@ -121,28 +121,22 @@ class ArticleController {
       }
       const id = ctx.params.id;
       const requestData = ctx.request.body;
-      const articleData = await Article.update(
-        {
-          title: requestData.title
+      const articleData = await Article.update({
+        title: requestData.title
+      }, {
+        where: {
+          id
         },
-        {
-          where: {
-            id
-          },
-          fields: ["title"]
-        }
-      );
-      const contentData = await Content.update(
-        {
-          value: requestData.content
+        fields: ["title"]
+      });
+      const contentData = await Content.update({
+        value: requestData.content
+      }, {
+        where: {
+          articleId: id
         },
-        {
-          where: {
-            articleId: id
-          },
-          fields: ["value"]
-        }
-      );
+        fields: ["value"]
+      });
       await Tag.destroy({
         where: {
           articleId: id
@@ -154,7 +148,10 @@ class ArticleController {
           articleId: id
         }))
       );
-      const data = { ...articleData, content: contentData, tag: tagData };
+      const data = { ...articleData,
+        content: contentData,
+        tag: tagData
+      };
       ctx.body = {
         code: 200,
         data
@@ -211,16 +208,13 @@ class ArticleController {
   static async deleteArticle(ctx) {
     try {
       const id = ctx.params.id;
-      const data = await Article.destroy(
-        {
-          where: {
-            id
-          }
-        },
-        {
-          force: false
+      const data = await Article.destroy({
+        where: {
+          id
         }
-      );
+      }, {
+        force: false
+      });
       ctx.body = {
         code: 200,
         data
