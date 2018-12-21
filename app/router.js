@@ -13,53 +13,52 @@ const ArchiveController = require('../controllers/archive.js')
 //配置路由
 
 //用户注册
-router.post('/user/register', UserController.register)
+router.post('/userRegister', UserController.register)
 //用户登录
-router.post('/user/login', UserController.login)
+router.post('/userLogin', UserController.login)
 //获取用户信息
-router.get('/user/info', UserController.getInfo)
+router.get('/userInfo', UserController.getInfo)
 //修改用户头像
-router.post('/user/editAvatar', UserController.editAvatar)
+router.post('/editAvatar', UserController.editAvatar)
 
 
 //文章列表获取
-router.get('/article', ArticleController.getAllArticle)
+router.get('/articles', ArticleController.getAllArticle)
 //文章详情获取
-router.get('/article/:id', ArticleController.getArticleDetail)
+router.get('/articles/:id', ArticleController.getArticleById)
 //文章发布
-router.post('/article', ArticleController.subArticle)
+router.post('/articles', ArticleController.subArticle)
 //文章修改
-router.put('/article/:id', ArticleController.editArticle)
+router.put('/articles/:id', ArticleController.editArticle)
 //文章删除
-router.delete('/article/:id', ArticleController.deleteArticle)
+router.delete('/articles/:id', ArticleController.deleteArticle)
 //文章上传图片
-router.post('/article/upload',ArticleController.uploadImage)
+router.post('/uploadArticleImage',ArticleController.uploadImage)
 
 
 //获取所有标签以及每个标签的总数
-router.get('/tag', TagController.getTag)
+router.get('/tags', TagController.getTags)
 //根据标签的名字获取文章
-router.get('/tag/:name', TagController.getTagArticle)
+router.get('/tags/:name/articles', TagController.getArticlesByTag)
 
 
 //归档文章查询
-router.get('/archive', ArchiveController.getArchive)
+router.get('/archives', ArchiveController.getArchives)
 
 
 //管理员获取个人信息
-router.get('/admin', AdminController.getAdminInfo)
+router.get('/adminInfo', AdminController.getAdminInfo)
 //管理员编辑个人信息
-router.put('/admin/', AdminController.editAdminInfo)
-//管理员管理员登录
-router.post('/admin/login', AdminController.login)
-
+router.put('/adminInfo', AdminController.editAdminInfo)
+//管理员管登录
+router.post('/adminLogin', AdminController.login)
 
 //留言板评论查询
-router.get('/comment/board', CommentController.getBoardComment)
-//获取文章的评论查询
-router.get('/comment/article', CommentController.getArticleComment)
-//评论回复发布
-router.post('/comment', CommentController.subComment)
+router.get('/board/comments', CommentController.getBoardComments)
+//获取对管理员的评论以及对应的文章查询
+router.get('/comments/articles', CommentController.getCommentsLinkArticles)
+//评论发布
+router.post('/comments', CommentController.subComment)
 
 
 module.exports = router;

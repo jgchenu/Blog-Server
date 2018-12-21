@@ -38,10 +38,10 @@ app.use(jwtKoa({
   custom: ctx => {
     const allowArr = [{
       method: 'POST',
-      urlReg: /^\/api\/(user|admin)\/(register|login)/
+      urlReg: /^\/api\/(userRegister|userLogin|adminLogin)/
     }, {
       method: 'GET',
-      urlReg: /^\/api\/(admin|tag|article|archive|comment).*/
+      urlReg: /^\/api\/(admin|tags|articles|archives|comments|board\/comments).*/
     }, {
       method: 'GET',
       urlReg: /^((?!\/api).)*$/

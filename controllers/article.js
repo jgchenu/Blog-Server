@@ -47,189 +47,168 @@ class ArticleController {
       }
     });
     ctx.body = {
-      code: 200,
+      code: 0,
       data: data,
       ...count.dataValues
     };
   }
   //获取文章详情
-  static async getArticleDetail(ctx) {
-    try {
-      const id = ctx.params.id;
-      const data = await Article.findOne({
-        where: {
-          id
+  static async getArticleById(ctx) {
+    const id = ctx.params.id;
+    const data = await Article.findOne({
+      where: {
+        id
+      },
+      include: [{
+          model: Content
         },
-        include: [{
-            model: Content
-          },
-          {
-            model: Tag
-          },
-          {
-            model: Comment,
-            include: [{
-                model: Apply,
-                as: "apply",
-                include: [{
-                    model: User,
-                    as: "applySayUser",
-                    attributes: {
-                      exclude: ["password"]
-                    }
-                  },
-                  {
-                    model: User,
-                    as: "applyToUser",
-                    attributes: {
-                      exclude: ["password"]
-                    }
+        {
+          model: Tag
+        },
+        {
+          model: Comment,
+          include: [{
+              model: Apply,
+              as: "apply",
+              include: [{
+                  model: User,
+                  as: "applySayUser",
+                  attributes: {
+                    exclude: ["password"]
                   }
-                ]
-              },
-              {
-                model: User,
-                as: "sayUser",
-                attributes: {
-                  exclude: ["password"]
+                },
+                {
+                  model: User,
+                  as: "applyToUser",
+                  attributes: {
+                    exclude: ["password"]
+                  }
                 }
+              ]
+            },
+            {
+              model: User,
+              as: "sayUser",
+              attributes: {
+                exclude: ["password"]
               }
-            ]
-          }
-        ]
-      });
-      ctx.body = {
-        code: 200,
-        data
-      };
-    } catch (error) {
-      ctx.body = {
-        code: 500,
-        message: error
-      };
-    }
+            }
+          ]
+        }
+      ]
+    });
+    ctx.body = {
+      code: 0,
+      data
+    };
   }
   //编辑文章
   static async editArticle(ctx) {
-    try {
-      const authority = ctx.state.user.authority;
-      if (!authority) {
-        ctx.status = 401;
-        return (ctx.body = {
-          message: "你不是管理员，你没有权限,无法进行此项操作"
-        });
-      }
-      const id = ctx.params.id;
-      const requestData = ctx.request.body;
-      const articleData = await Article.update({
-        title: requestData.title
-      }, {
-        where: {
-          id
-        },
-        fields: ["title"]
+    const authority = ctx.state.user.authority;
+    if (!authority) {
+      ctx.status = 401;
+      return (ctx.body = {
+        message: "你不是管理员，你没有权限,无法进行此项操作"
       });
-      const contentData = await Content.update({
-        value: requestData.content
-      }, {
-        where: {
-          articleId: id
-        },
-        fields: ["value"]
-      });
-      await Tag.destroy({
-        where: {
-          articleId: id
-        }
-      });
-      const tagData = await Tag.bulkCreate(
-        requestData.tags.map(item => ({
-          name: item,
-          articleId: id
-        }))
-      );
-      const data = { ...articleData,
-        content: contentData,
-        tag: tagData
-      };
-      ctx.body = {
-        code: 200,
-        data
-      };
-    } catch (error) {
-      ctx.body = {
-        code: 500,
-        message: error
-      };
     }
+    const id = ctx.params.id;
+    const requestData = ctx.request.body;
+    const articleData = await Article.update({
+      title: requestData.title
+    }, {
+      where: {
+        id
+      },
+      fields: ["title"]
+    });
+    const contentData = await Content.update({
+      value: requestData.content
+    }, {
+      where: {
+        articleId: id
+      },
+      fields: ["value"]
+    });
+    await Tag.destroy({
+      where: {
+        articleId: id
+      }
+    });
+    const tagData = await Tag.bulkCreate(
+      requestData.tags.map(item => ({
+        name: item,
+        articleId: id
+      }))
+    );
+    const data = { ...articleData,
+      content: contentData,
+      tag: tagData
+    };
+    ctx.body = {
+      code: 0,
+      data
+    };
+
   }
   //发布文章
   static async subArticle(ctx) {
-    try {
-      const requestData = ctx.request.body;
-      const authority = +ctx.state.user.authority;
-      if (!authority) {
-        ctx.status = 401;
-        return (ctx.body = {
-          message: "你不是管理员，你没有权限,无法进行此项操作"
-        });
-      }
-      const articleData = await Article.create({
-        title: requestData.title,
-        userId: 1
+    const requestData = ctx.request.body;
+    const authority = +ctx.state.user.authority;
+    if (!authority) {
+      ctx.status = 401;
+      return (ctx.body = {
+        message: "你不是管理员，你没有权限,无法进行此项操作"
       });
-      const contentData = await Content.create({
-        value: requestData.content,
-        articleId: articleData.id
-      });
-      const tagData = await Tag.bulkCreate(
-        requestData.tags.map(item => ({
-          name: item,
-          articleId: articleData.id
-        }))
-      );
-      const data = {
-        ...articleData.dataValues,
-        content: contentData,
-        tag: tagData
-      };
-      ctx.body = {
-        code: 200,
-        data
-      };
-    } catch (error) {
-      ctx.body = {
-        code: 500,
-        message: error
-      };
     }
+    const articleData = await Article.create({
+      title: requestData.title,
+      userId: 1
+    });
+    const contentData = await Content.create({
+      value: requestData.content,
+      articleId: articleData.id
+    });
+    const tagData = await Tag.bulkCreate(
+      requestData.tags.map(item => ({
+        name: item,
+        articleId: articleData.id
+      }))
+    );
+    const data = {
+      ...articleData.dataValues,
+      content: contentData,
+      tag: tagData
+    };
+    ctx.body = {
+      code: 0,
+      data
+    };
+
   }
   //删除文章
   static async deleteArticle(ctx) {
-    try {
-      const id = ctx.params.id;
-      const data = await Article.destroy({
-        where: {
-          id
-        }
-      }, {
-        force: false
-      });
-      ctx.body = {
-        code: 200,
-        data
-      };
-    } catch (error) {
-      ctx.body = {
-        code: 500,
-        message: error
-      };
-    }
+    const id = ctx.params.id;
+    const data = await Article.destroy({
+      where: {
+        id
+      }
+    }, {
+      force: false
+    });
+    await Tag.destroy({
+      where: {
+        articleId: id
+      }
+    });
+    ctx.body = {
+      code: 0,
+      data
+    };
   }
   //上传文章图片
   static async uploadImage(ctx) {
     const id = ctx.state.user.userId;
-    const file = ctx.request.files.avatar; // 获取上传文件
+    const file = ctx.request.files.upload; // 获取上传文件
     const reader = fs.createReadStream(file.path); // 创建可读流
     const ext = file.name.split(".").pop(); // 获取上传文件扩展名
     const uploadUrl = `upload/${Math.random().toString()}.${ext}`;
@@ -237,8 +216,6 @@ class ArticleController {
     reader.pipe(upStream); // 可读流通过管道写入可写流
     const envHost = "";
     const avartarUrl = `${envHost}/${uploadUrl}`;
-    // ctx.errno = 0;
-    // ctx.data = [avartarUrl]
     ctx.body = {
       errno: 0,
       data: [avartarUrl]
