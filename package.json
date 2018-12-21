@@ -6,6 +6,7 @@
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
     "koa-jwt": "^3.5.1",
+    "koa-log4": "^2.3.2",
     "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",

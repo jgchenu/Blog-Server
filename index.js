@@ -9,10 +9,16 @@ const path = require('path') // 用于处理目录路径
 const koaStatic = require('koa-static') // 静态资源处理
 const jwtKoa = require('koa-jwt'); // 用于路由权限控制
 const errorHandle = require('./middlewares/errorHandle') //401 500等的错误处理
+const logHandle = require('./middlewares/logHandle') //401 500等的错误处理
+const { accessLogger } = require('./logger');
 
-const secret = 'jgchen'
+app.use(accessLogger());
 //跨域
 // process.env.NODE_ENV ? app.use(cors()) : '';
+
+// 控制台的log
+app.use(logHandle);
+
 //设置静态资源的目录
 const staticPath = './static'
 app.use(koaStatic(
@@ -32,6 +38,7 @@ app.use(koaBody({
 app.use(errorHandle);
 
 /* 路由权限控制 allowArr是允许通过方法路径正则 */
+const secret = 'jgchen'
 app.use(jwtKoa({
   secret: secret
 }).unless({
