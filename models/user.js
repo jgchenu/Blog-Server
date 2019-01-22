@@ -34,11 +34,11 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: '<p>这个人很懒，什么都没有留下</p>'
     },
-    friends: {
-      type: TEXT(),
-      allowNull:false,
-      defaultValue:'<p>暂时无友链</p>'
-    },
+    // friends: {
+    //   type: TEXT(),
+    //   allowNull:false,
+    //   defaultValue:'<p>暂时无友链</p>'
+    // },
     avatar: {
       type: STRING(255),
       defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-UUAYdKEoBCHc7G7PnJLg2oXkz-pfZ9UG5-etKoIwiW1UJMk0',
