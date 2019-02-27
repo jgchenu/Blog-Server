@@ -3,14 +3,11 @@ const sequelize = require('../app/db')
 const Article = model.article;
 const Content = model.content;
 const Tag = model.tag;
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 class TagController {
     static async getTags(ctx) {
-        const data = await Tag.findAll({
-            attributes: ['name',
-                [sequelize.fn('COUNT', sequelize.col('name')), 'count']
-            ],
-            group: 'name'
-        })
+        const data = await Tag.findAll()
         ctx.body = {
             code: 0,
             data
@@ -29,7 +26,9 @@ class TagController {
             }, {
                 model: Tag,
                 where: {
-                    name
+                    name: {
+                      [Op.like]: `%${name}%`
+                    }
                 },
             }],
             offset: start,

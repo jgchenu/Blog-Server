@@ -129,18 +129,29 @@ class ArticleController {
       },
       fields: ["value"]
     });
-    await Tag.destroy({
+    const findTagData = await Tag.findOne({
       where: {
         articleId: id
-      }
-    });
-    const tagData = await Tag.bulkCreate(
-      requestData.tags.map(item => ({
-        name: item,
+      },
+    })
+    if (findTagData) {
+      findTagData.update({
+        name: requestData.tags
+      }, {
+        where: {
+          articleId: id
+        },
+        fields: ["name"]
+      });
+    }else{
+      var tagData = await Tag.create({
+        name: requestData.tags,
         articleId: id
-      }))
-    );
-    const data = { ...articleData,
+      });
+    }
+
+    const data = {
+      ...articleData,
       content: contentData,
       tag: tagData
     };
@@ -168,12 +179,10 @@ class ArticleController {
       value: requestData.content,
       articleId: articleData.id
     });
-    const tagData = await Tag.bulkCreate(
-      requestData.tags.map(item => ({
-        name: item,
-        articleId: articleData.id
-      }))
-    );
+    const tagData = await Tag.create({
+      name: requestData.tags,
+      articleId: articleData.id
+    });
     const data = {
       ...articleData.dataValues,
       content: contentData,
